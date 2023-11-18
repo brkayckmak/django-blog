@@ -1,5 +1,5 @@
 from django.contrib import admin
-from blog.models import category_model, writings_model, comment_model
+from blog.models import category_model, writings_model, comment_model, contact_model
 
 admin.site.register(category_model)
 
@@ -14,3 +14,9 @@ class comments_admin(admin.ModelAdmin):
     list_display = ("writer", "creation_date", "update_date")
 
 admin.site.register(comment_model, comments_admin)
+
+class contact_admin(admin.ModelAdmin):
+    search_fields = ("email",)
+    list_display = ("email", "creation_date")
+
+admin.site.register(contact_model, contact_admin)
