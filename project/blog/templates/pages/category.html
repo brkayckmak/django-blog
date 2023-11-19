@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %} {{category_name}} {% endblock %}
+
+{% block content %}
+
+{% for writing in writings %}
+<div class="card mb-3">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="{{ writing.image.url }}" class="img" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{writing.title}}</h5>
+        <p class="card-text">{{writing.content|safe|truncatechars_html:150}}</p>
+        <p class="card-text"><small class="text-muted">{{writing.creation_date|timesince}}</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+{% empty %}
+
+<div class="alert alert-primary" role="alert">
+  No writings found!
+</div>
+
+{% endfor %}
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-end">
+    {% if writings.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page=1" tabindex="-1" aria-disabled="true">First Page</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="?page={{writings.previous_page_number}}" tabindex="-1" aria-disabled="true">Previous</a>
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+      </li>
+    {% endif %}
+
+    <li class="page-item"><a class="page-link" href="#">{{writings.number}}</a></li>
+
+    {% if writings.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{writings.next_page_number}}">{{writings.next_page_number}}</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="?page={{writings.paginator.num_pages}}">Last Page</a>
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" href="#">Next</a>
+      </li>
+    {% endif %}
+
+  </ul>
+</nav>
+{% endblock %}
