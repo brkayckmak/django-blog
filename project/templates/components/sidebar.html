@@ -2,11 +2,17 @@
     <div class="card-header">
       Menu
     </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Edit Profile</li>
-      <li class="list-group-item">Change Password</li>
-      <li class="list-group-item">Add Content</li>
-      <li class="list-group-item">My Contents</li>
-      <li class="list-group-item">Exit</li>
-    </ul>
+    {% if request.user.is_authenticated %}
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Edit Profile</li>
+        <li class="list-group-item">Change Password</li>
+        <li class="list-group-item">Add Content</li>
+        <li class="list-group-item"><a href="{% url 'my_writings' %}">My Writings</a></li>
+        <li class="list-group-item">Exit</li>
+      </ul>
+    {% else %}
+        Login form will be here.
+    {% endif %}
+
+    
   </div>
