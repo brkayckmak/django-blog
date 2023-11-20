@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{%load static%}
+
+{% block title %} {{writing.title}} {% endblock %}
+
+{% block content %}
+
+<div class="card mb-3">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="{{ writing.image.url }}" class="img" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{writing.title}}</h5>
+        <p class="card-text">{{writing.content|safe}}</p>
+        <p class="card-text"><small class="text-muted">{{writing.creation_date|timesince}}</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h5>Comments</h5>
+
+{% for comment in comments %}
+
+<div class="row g-0 bg-body-secondary position-relative">
+  <div class="col-md-2 mb-md-0 p-md-4">
+    {% if comment.writer.avatar %}
+      <img src="{{comment.writer.avatar.url}}" class="rounded" width="100px" alt="...">
+    {% else %}
+      <img src="{% static 'img/default_avatar.png' %}" class="rounded" width="100px" alt="...">
+    {% endif %}
+  </div>
+  <div class="col-md-10 p-4 ps-md-0">
+    <h5 class="mt-0">{{comment.writer.username}}</h5>
+    <p>{{comment.comment}}</p>
+  </div>
+</div>
+
+{% empty %}
+
+<div class="alert alert-primary" role="alert">
+  No comment found!
+</div>
+
+{% endfor %}
+{% endblock %}
