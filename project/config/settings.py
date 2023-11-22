@@ -28,7 +28,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     'account',
-    'ckeditor'
+    'ckeditor',
+    'crispy_forms',
+    'crispy_bootstrap4'
 ]
 
 MIDDLEWARE = [
@@ -121,3 +123,5 @@ AUTH_USER_MODEL = "account.custom_user_model"
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "/media/")
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
