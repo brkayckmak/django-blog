@@ -6,3 +6,4 @@ from .detail import detail
 from .add_writing import add_writing
 from .update_writing import update_writing
 from .delete_writing import delete_writing
+from .delete_comment import delete_comment

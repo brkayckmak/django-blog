@@ -1,5 +1,6 @@
 {% extends "base.html" %}
-{%load static%}
+{% load static %}
+{% load crispy_forms_tags %}
 
 {% block title %} {{writing.title}} {% endblock %}
 
@@ -43,6 +44,11 @@
   <div class="col-md-10 p-4 ps-md-0">
     <h5 class="mt-0">{{comment.writer.username}}</h5>
     <p>{{comment.comment}}</p>
+    {% if request.user == comment.writer or request.user == writing.writer %}
+    <p>
+      <a class="btn btn-danger" href="{% url 'delete-comment' id=comment.id %}">Delete Comment</a>
+    </p>
+    {% endif %}
   </div>
 </div>
 
@@ -53,4 +59,17 @@
 </div>
 
 {% endfor %}
+
+{% if request.user.is_authenticated %}
+
+<form method="POST">
+  {% csrf_token %}
+  {{add_comment_form|crispy}}
+  <input type="submit" value="Add Comment" class="btn btn-danger mt-3 mb-3">
+</form>
+
+{% else %}
+<p>Login for add comment.</p>
+
+{% endif %}
 {% endblock %}
