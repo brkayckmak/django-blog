@@ -19,7 +19,9 @@
         <th scope="row">{{writing.id}}</th>
         <td>{{writing.title}}</td>
         <td>{{writing.update_date}}</td>
-        <td>Actions</td>
+        <td>
+          <a class="btn btn-primary" href="{% url 'update-writing' slug=writing.slug %}">Update</a>
+          <a class="btn btn-danger" href="{% url 'delete-writing' slug=writing.slug %}">Delete Writing</a></td>
         </tr>
 {% empty %}
     <div class="alert alert-primary" role="alert">

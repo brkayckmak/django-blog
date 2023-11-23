@@ -1,5 +1,5 @@
 from django.urls import path
-from blog.views import contact, mainpage, category, my_writings, detail
+from blog.views import contact, mainpage, category, my_writings, detail, add_writing, update_writing, delete_writing
 
 urlpatterns = [
     path("", mainpage, name="mainpage"),
@@ -7,4 +7,8 @@ urlpatterns = [
     path("category/<slug:category_slug>", category, name="category"),
     path("my_writings", my_writings, name="my_writings"),
     path("detail/<slug:slug>", detail, name="detail"),
+    path("add-writing", add_writing, name="add-writing"),
+    path("update-writing/<slug:slug>", update_writing, name="update-writing"),
+    path("delete-writing/<slug:slug>", delete_writing, name="delete-writing"),
+
 ]

@@ -14,7 +14,15 @@
       <div class="card-body">
         <h5 class="card-title">{{writing.title}}</h5>
         <p class="card-text">{{writing.content|safe}}</p>
-        <p class="card-text"><small class="text-muted">{{writing.creation_date|timesince}}</small></p>
+        <p class="card-text">
+          <small class="text-muted">{{writing.creation_date|timesince}}</small>
+          {% if request.user == writing.writer %}
+          <p>
+            <a class="btn btn-primary" href="{% url 'update-writing' slug=writing.slug %}">Update</a>
+            <a class="btn btn-danger" href="{% url 'delete-writing' slug=writing.slug %}">Delete Writing</a>
+          </p>
+          {% endif %}
+        </p>
       </div>
     </div>
   </div>
