@@ -10,7 +10,7 @@ def mainpage(request):
         writings = writings.filter(Q(title__icontains=search) | Q(content__icontains=search)).distinct()
     page = request.GET.get("page")
 
-    paginator = Paginator(writings, 1)
+    paginator = Paginator(writings, 2)
     
     context = {"writings": paginator.get_page(page)}
     return render(request, "pages/mainpage.html", context=context)

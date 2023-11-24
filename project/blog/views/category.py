@@ -7,7 +7,7 @@ def category(request, category_slug):
     writings = category.writing.order_by("-id")
     
     page = request.GET.get("page")
-    paginator = Paginator(writings, 1)
+    paginator = Paginator(writings, 2)
     
     context = {"writings": paginator.get_page(page),
                "category_name": category.name}

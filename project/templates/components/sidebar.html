@@ -2,7 +2,6 @@
     <div class="card-header">
       Menu
     </div>
-    {% if request.user.is_authenticated %}
       <ul class="list-group list-group-flush">
         <li class="list-group-item"><a href="{% url 'edit-profile' %}">Edit Profile</a></li>
         <li class="list-group-item"><a href="{% url 'change-password' %}">Change Password</a></li></li>
@@ -10,11 +9,4 @@
         <li class="list-group-item"><a href="{% url 'my_writings' %}">My Writings</a></li>
         <li class="list-group-item"><a href="{% url 'logout' %}">Log out</a></li>
       </ul>
-    {% else %}
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item"><a href="{% url 'register' %}">Register</a></li>
-    </ul>
-    {% endif %}
-
-    
   </div>

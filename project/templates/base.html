@@ -17,23 +17,21 @@
 
       <div class="container mt-3">
         <div class="row">
-            <div class="col-sm-9">
+            <div {% if request.user.is_authenticated %} class="col-sm-9" {% else %} class="col-sm-12" {% endif %}>
 
                 {% block content %}{% endblock %}
 
             </div>
 
             <div class="col-sm-3">
-
+              {% if request.user.is_authenticated %}
                 {% include "components/sidebar.html" %}
+              {% endif %}
 
             </div>
         </div>
-        
 
         {% include "components/footer.html" %}
-
-        
 
       </div>
     <script src="{% static 'js/bootstrap.bundle.min.js' %}" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
