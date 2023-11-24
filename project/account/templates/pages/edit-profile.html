@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %} Edit Profile {% endblock %}
+
+
+
+{% block content %}
+
+    {% if messages %}
+
+    <div class="alert alert-success" role="alert">
+      {% for message in messages %}
+        {{ message }}
+      {% endfor %}
+    </div>
+
+    {% endif %}
+
+    <form enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        {{form|crispy}}
+        <input type="submit" class="btn btn-danger mt-3 mb-3" value="Edit Profile"/>
+
+    </form>
+    
+{% endblock %}
