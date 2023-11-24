@@ -11,7 +11,9 @@
         <li class="list-group-item"><a href="{% url 'logout' %}">Log out</a></li>
       </ul>
     {% else %}
-        Login form will be here.
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><a href="{% url 'register' %}">Register</a></li>
+    </ul>
     {% endif %}
 
     

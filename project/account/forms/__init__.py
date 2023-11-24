@@ -1,1 +1,2 @@
 from .edit_profile import edit_profile_form
+from .user_register import user_register_form
