@@ -5,5 +5,5 @@ from .my_writings import my_writings
 from .detail import detail_view
 from .add_writing import add_writing
 from .update_writing import update_writing
-from .delete_writing import delete_writing
+from .delete_writing import delete_writing_delete_view
 from .delete_comment import delete_comment

@@ -17,7 +17,7 @@
 {% for writing in writings %}
     <tr>
         <th scope="row">{{writing.id}}</th>
-        <td>{{writing.title}}</td>
+        <td><a href="{% url 'detail' slug=writing.slug %}">{{writing.title}}</a></td>
         <td>{{writing.update_date}}</td>
         <td>
           <a class="btn btn-primary" href="{% url 'update-writing' slug=writing.slug %}">Update</a>
