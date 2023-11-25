@@ -12,6 +12,6 @@ def contact(request):
             model.name = form.cleaned_data["name"]
             model.message = form.cleaned_data["message"]
             model.save()
-            return redirect("mainpage")
+            return redirect("email-sent")
     context = {"form": form}
     return render(request, "pages/contact.html", context=context)
