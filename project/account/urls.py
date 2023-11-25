@@ -1,5 +1,5 @@
 from django.urls import path
-from account.views import log_out, change_passw, edit_profile, user_register
+from account.views import log_out, change_passw, edit_profile, user_register, profile_detail_view
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -7,5 +7,6 @@ urlpatterns = [
     path("change-password", change_passw, name="change-password"),
     path("edit-profile", edit_profile, name="edit-profile"),
     path("register", user_register, name="register"),
-    path("login", auth_views.LoginView.as_view(template_name="pages/login.html"), name="login")
+    path("login", auth_views.LoginView.as_view(template_name="pages/login.html"), name="login"),
+    path("user/<str:username>", profile_detail_view.as_view(), name="profile")
 ]
