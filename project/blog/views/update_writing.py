@@ -5,10 +5,12 @@ from blog.forms import update_writing_model_form
 from django.contrib.auth.decorators import login_required
 from blog.models import writings_model
 from django.views.generic import UpdateView
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 #Update Class View
-class update_writing_update_view(UpdateView):
+class update_writing_update_view(LoginRequiredMixin, UpdateView):
+    login_url = reverse_lazy("login")
     template_name = "pages/update-writing.html"
     fields = ("image", "title", "content", "categories")
 

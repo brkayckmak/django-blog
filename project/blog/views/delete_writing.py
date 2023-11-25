@@ -5,9 +5,11 @@ from blog.models import writings_model
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import DeleteView
 from django.urls import reverse_lazy #for success url
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 #Delete Class View
-class delete_writing_delete_view(DeleteView):
+class delete_writing_delete_view(LoginRequiredMixin, DeleteView):
+    login_url = reverse_lazy("login")
     template_name = "pages/delete_writing_confirmation.html" #confirmation of deleting
     success_url = reverse_lazy("my_writings")
 
