@@ -1,6 +1,7 @@
 from pathlib import Path
 import os
 import environ
+import sentry_sdk
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent #last .parent added from us because settings file divided to 3 files and transforted to ./settings path.
@@ -128,3 +129,9 @@ LOGGING = {
         }
     }
 }
+
+sentry_sdk.init(
+    dsn=env("SENTRY_DSN"),
+    traces_sample_rate=1.0,
+    profiles_sample_rate=1.0,
+)
