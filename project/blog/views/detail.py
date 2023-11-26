@@ -2,7 +2,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from blog.models import writings_model
 from blog.forms import add_comment_model_form
 from django.views import View
+import logging
 
+logger = logging.getLogger("read_writing")
 #Class Type View
 class detail_view(View):
     http_method_names = ["get", "post"] #This view will support get and post requests.
@@ -11,6 +13,10 @@ class detail_view(View):
     def get(self, request, slug):
         writing = get_object_or_404(writings_model, slug=slug)
         comments = writing.comments.all()
+        
+        if request.user.is_authenticated:
+            logger.info("writing read: " + request.user.username)
+
         context = {"writing": writing, "comments": comments, "add_comment_form": self.add_comment_form}
         return render(request, "pages/detail.html", context=context)
     

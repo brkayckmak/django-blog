@@ -96,3 +96,30 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "/media/")
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 LOGIN_REDIRECT_URL = "/" #Redirect to this page after login.
+
+LOGGING = {
+    "version":1,
+    "disable_existing_loggers":False,
+    "formatters":{
+        "basic_statement":{
+            "format":"{asctime} {levelname} {message} {name}",
+            "style":"{"
+        } 
+    },
+    "handlers":{
+        "console":{
+            "class":"logging.StreamHandler"
+        },
+        "file":{
+            "class":"logging.FileHandler",
+            "filename":"logs/read_writing.log",
+            "formatter":"basic_statement"
+        }
+    },
+    "loggers": {
+        "read_writing":{
+            "level":"INFO",
+            "handlers":["console", "file"]
+        }
+    }
+}
