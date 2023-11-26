@@ -27,7 +27,8 @@ INSTALLED_APPS = [
     'account',
     'ckeditor',
     'crispy_forms',
-    'crispy_bootstrap4'
+    'crispy_bootstrap4',
+    'django_db_logger',
 ]
 
 MIDDLEWARE = [
@@ -114,12 +115,16 @@ LOGGING = {
             "class":"logging.FileHandler",
             "filename":"logs/read_writing.log",
             "formatter":"basic_statement"
+        },
+        'db_log': {
+            'level': 'DEBUG',
+            'class': 'django_db_logger.db_log_handler.DatabaseLogHandler'
         }
     },
     "loggers": {
         "read_writing":{
             "level":"INFO",
-            "handlers":["console", "file"]
+            "handlers":["console", "file", "db_log"]
         }
     }
 }

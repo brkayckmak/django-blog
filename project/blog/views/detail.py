@@ -15,7 +15,7 @@ class detail_view(View):
         comments = writing.comments.all()
         
         if request.user.is_authenticated:
-            logger.info("writing read: " + request.user.username)
+            logger.info(writing.title + " read by " + request.user.username)
 
         context = {"writing": writing, "comments": comments, "add_comment_form": self.add_comment_form}
         return render(request, "pages/detail.html", context=context)
